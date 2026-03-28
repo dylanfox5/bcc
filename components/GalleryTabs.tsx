@@ -56,7 +56,7 @@ export default function GalleryTabs({ products }: { products: Product[] }) {
             key={tab.id}
             onClick={() => setTab(tab.id)}
             className={[
-              "font-serif text-[11px] uppercase tracking-[0.16em] px-5 py-3 border-b-2 -mb-px transition-colors duration-200",
+              "font-serif text-[11px] uppercase tracking-[0.16em] px-5 py-4 border-b-2 -mb-px transition-colors duration-200",
               active === tab.id
                 ? "border-clay text-clay"
                 : "border-transparent text-mist hover:text-bark",
@@ -80,7 +80,7 @@ export default function GalleryTabs({ products }: { products: Product[] }) {
           </div>
           <a
             href="mailto:benashipley@gmail.com"
-            className="shrink-0 font-serif text-[11px] uppercase tracking-[0.14em] border border-earth text-earth px-5 py-2.5 hover:bg-earth hover:text-parchment transition-colors duration-200 whitespace-nowrap"
+            className="shrink-0 w-full sm:w-auto text-center font-serif text-[11px] uppercase tracking-[0.14em] border border-earth text-earth px-5 py-3.5 hover:bg-earth hover:text-parchment transition-colors duration-200"
           >
             Get in touch
           </a>

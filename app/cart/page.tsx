@@ -29,14 +29,14 @@ export default function CartPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-14">
-      <h1 className="font-display text-4xl font-normal text-earth mb-10">
+    <div className="max-w-2xl mx-auto px-6 py-8 md:py-14">
+      <h1 className="font-display text-3xl md:text-4xl font-normal text-earth mb-8 md:mb-10">
         Your <em className="italic text-clay">Cart</em>
       </h1>
 
       <ul className="divide-y divide-earth/10 mb-10">
         {items.map(({ product, quantity }) => (
-          <li key={product.id} className="py-5 flex items-center gap-5">
+          <li key={product.id} className="py-5 flex items-start gap-4">
 
             {/* Thumbnail */}
             <div
@@ -48,41 +48,44 @@ export default function CartPage() {
               }}
             />
 
-            {/* Name + price */}
+            {/* Name + price + controls */}
             <div className="flex-1 min-w-0">
-              <p className="font-display text-earth text-base">{product.name}</p>
-              <p className="font-serif text-clay text-sm">{formatPrice(product.price)}</p>
+              <div className="flex items-start justify-between gap-2 mb-1">
+                <p className="font-display text-earth text-base leading-snug">{product.name}</p>
+                <p className="font-serif text-earth text-sm flex-shrink-0">
+                  {formatPrice(product.price * quantity)}
+                </p>
+              </div>
+              <p className="font-serif text-clay text-sm mb-3">{formatPrice(product.price)}</p>
+
+              <div className="flex items-center justify-between">
+                {/* Quantity */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => updateQuantity(product.id, quantity - 1)}
+                    className="w-10 h-10 border border-earth/30 text-bark hover:border-clay hover:text-clay transition-colors text-sm"
+                  >
+                    −
+                  </button>
+                  <span className="w-6 text-center font-serif text-sm text-earth">{quantity}</span>
+                  <button
+                    onClick={() => updateQuantity(product.id, quantity + 1)}
+                    className="w-10 h-10 border border-earth/30 text-bark hover:border-clay hover:text-clay transition-colors text-sm"
+                  >
+                    +
+                  </button>
+                </div>
+
+                {/* Remove */}
+                <button
+                  onClick={() => removeItem(product.id)}
+                  className="font-serif text-[10px] uppercase tracking-[0.12em] text-mist hover:text-clay transition-colors py-2 px-1"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
 
-            {/* Quantity */}
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => updateQuantity(product.id, quantity - 1)}
-                className="w-7 h-7 border border-earth/30 text-bark hover:border-clay hover:text-clay transition-colors text-sm"
-              >
-                −
-              </button>
-              <span className="w-5 text-center font-serif text-sm text-earth">{quantity}</span>
-              <button
-                onClick={() => updateQuantity(product.id, quantity + 1)}
-                className="w-7 h-7 border border-earth/30 text-bark hover:border-clay hover:text-clay transition-colors text-sm"
-              >
-                +
-              </button>
-            </div>
-
-            {/* Line total */}
-            <p className="w-20 text-right font-serif text-sm text-earth">
-              {formatPrice(product.price * quantity)}
-            </p>
-
-            {/* Remove */}
-            <button
-              onClick={() => removeItem(product.id)}
-              className="font-serif text-[10px] uppercase tracking-[0.12em] text-mist hover:text-clay transition-colors ml-1"
-            >
-              Remove
-            </button>
           </li>
         ))}
       </ul>

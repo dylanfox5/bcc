@@ -25,7 +25,7 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-14">
+    <div className="max-w-5xl mx-auto px-6 py-8 md:py-14">
 
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 mb-10 font-serif text-[11px] uppercase tracking-[0.14em] text-mist">
@@ -36,7 +36,7 @@ export default async function ProductDetailPage({
         <span className="text-bark">{product.name}</span>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-14 items-start">
+      <div className="grid md:grid-cols-2 gap-8 md:gap-14 items-start">
 
         {/* Image */}
         <div
@@ -65,7 +65,7 @@ export default async function ProductDetailPage({
             </span>
           )}
 
-          <h1 className="font-display text-4xl font-normal text-earth leading-tight">
+          <h1 className="font-display text-3xl md:text-4xl font-normal text-earth leading-tight">
             {product.name}
           </h1>
 

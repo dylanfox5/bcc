@@ -27,8 +27,8 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-14">
-      <h1 className="font-display text-4xl font-normal text-earth mb-10">
+    <div className="max-w-2xl mx-auto px-6 py-8 md:py-14">
+      <h1 className="font-display text-3xl md:text-4xl font-normal text-earth mb-8 md:mb-10">
         Check<em className="italic text-clay">out</em>
       </h1>
 

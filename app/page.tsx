@@ -7,15 +7,15 @@ export default function HomePage() {
   return (
     <div>
       {/* ── Hero ── */}
-      <section className="max-w-5xl mx-auto px-6 py-20">
-        <div className="flex flex-col md:flex-row items-center gap-14">
+      <section className="max-w-5xl mx-auto px-6 py-12 md:py-20">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-14">
 
           {/* Left: text */}
           <div className="flex-1 min-w-0">
             <p className="hero-eyebrow font-serif text-[11px] uppercase tracking-[0.22em] text-clay mb-5">
               Handmade Ceramics
             </p>
-            <h1 className="hero-heading font-display text-5xl md:text-[3.75rem] leading-[1.08] font-normal text-earth mb-6">
+            <h1 className="hero-heading font-display text-4xl sm:text-5xl md:text-[3.75rem] leading-[1.08] font-normal text-earth mb-6">
               Thrown by hand,<br />
               <em className="italic text-clay">finished with care.</em>
             </h1>
@@ -23,10 +23,10 @@ export default function HomePage() {
               Each piece is wheel-thrown in Kansas City and glazed with intention.
               No two are alike — that&apos;s the point.
             </p>
-            <div className="hero-cta flex items-center gap-6">
+            <div className="hero-cta flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
               <Link
                 href="/gallery"
-                className="inline-block bg-earth text-parchment font-serif text-[11px] uppercase tracking-[0.16em] px-8 py-3.5 hover:bg-clay transition-colors duration-300"
+                className="inline-block bg-earth text-parchment font-serif text-[11px] uppercase tracking-[0.16em] px-8 py-4 hover:bg-clay transition-colors duration-300"
               >
                 View Gallery
               </Link>
@@ -34,7 +34,7 @@ export default function HomePage() {
                 href="/gallery"
                 className="font-serif text-[13px] text-clay border-b border-clay pb-0.5 hover:text-earth hover:border-earth transition-colors duration-200"
               >
-                See what's new →
+                See what&apos;s new →
               </Link>
             </div>
           </div>
@@ -66,9 +66,9 @@ export default function HomePage() {
       </div>
 
       {/* ── Featured Pieces ── */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <div className="flex items-baseline justify-between mb-10">
-          <h2 className="font-display text-3xl font-normal text-earth">
+      <section className="max-w-5xl mx-auto px-6 py-10 md:py-16">
+        <div className="flex items-baseline justify-between mb-8 md:mb-10">
+          <h2 className="font-display text-2xl md:text-3xl font-normal text-earth">
             Featured <em className="italic text-clay">Pieces</em>
           </h2>
           <Link
