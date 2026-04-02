@@ -26,7 +26,7 @@ export default function HomePage() {
             <div className="hero-cta flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
               <Link
                 href="/gallery"
-                className="inline-block bg-earth text-parchment font-serif text-[11px] uppercase tracking-[0.16em] px-8 py-4 hover:bg-clay transition-colors duration-300"
+                className="inline-block bg-black text-parchment font-serif text-[11px] uppercase tracking-[0.16em] px-8 py-4 hover:bg-clay transition-colors duration-300"
               >
                 View Gallery
               </Link>

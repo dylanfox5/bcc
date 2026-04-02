@@ -117,7 +117,7 @@ export default function GalleryTabs({ products }: { products: Product[] }) {
                   </div>
                 )}
                 {product.collection === "new" && (
-                  <div className="absolute top-2 left-2 bg-clay text-parchment font-serif text-[9px] uppercase tracking-[0.12em] px-2 py-0.5">
+                  <div className="absolute top-2 left-2 bg-crimson text-parchment font-serif text-[9px] uppercase tracking-[0.12em] px-2 py-0.5">
                     New
                   </div>
                 )}

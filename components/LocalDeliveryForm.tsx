@@ -107,7 +107,7 @@ export default function LocalDeliveryForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full bg-earth text-parchment font-serif text-[11px] uppercase tracking-[0.16em] px-6 py-4 hover:bg-clay transition-colors duration-300 disabled:opacity-50"
+        className="w-full bg-black text-parchment font-serif text-[11px] uppercase tracking-[0.16em] px-6 py-4 hover:bg-clay transition-colors duration-300 disabled:opacity-50"
       >
         {submitting ? "Submitting..." : "Submit Order Request"}
       </button>
