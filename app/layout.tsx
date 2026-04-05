@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/Header";
 
@@ -38,6 +39,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
