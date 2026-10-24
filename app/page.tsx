@@ -41,21 +41,17 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Right: hero image placeholder */}
+          {/* Right: hero image */}
           <div className="flex-1 w-full">
             <div className="relative aspect-[4/3] rounded-sm overflow-hidden bg-sand">
-              {/* 2×2 color-block grid — replace with <Image> when photo is ready */}
-              <div className="absolute inset-0 grid grid-cols-2 gap-px bg-clay/20">
-                <div className="bg-[#8B4513]" />
-                <div className="bg-[#D4956A]" />
-                <div className="bg-[#E8C9A0]" />
-                <div className="bg-[#6B3A2A]" />
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display italic text-parchment/50 text-sm tracking-wide">
-                  hero photo
-                </span>
-              </div>
+              <Image
+                src="/hero.jpg"
+                alt="Potter smoothing a freshly thrown vase on the wheel"
+                fill
+                preload
+                className="object-cover object-[50%_30%]"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
           </div>
 
