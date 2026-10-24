@@ -4,10 +4,10 @@ export interface Product {
   description: string;
   price: number; // in cents
   images: string[];
-  category: string;
+  categories: string[];
+  collections: string[];
   inStock: boolean;
   featured?: boolean;
-  collection?: "new" | "commission";
 }
 
 export interface CartItem {
@@ -28,5 +28,24 @@ export interface LocalDeliveryFormData {
   email: string;
   phone: string;
   address: string;
+  notes: string;
+}
+
+export interface AddressFields {
+  name: string;
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
+
+export interface ShippingFormData {
+  email: string;
+  phone: string;
+  shippingAddress: AddressFields;
+  billingSameAsShipping: boolean;
+  billingAddress: AddressFields;
   notes: string;
 }

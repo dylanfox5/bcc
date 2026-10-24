@@ -4,12 +4,14 @@ import { PaymentForm, CreditCard } from "react-square-web-payments-sdk";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { formatPrice } from "@/lib/products";
+import { ShippingFormData } from "@/lib/types";
 
 interface Props {
   totalPrice: number; // in cents
+  shippingData: ShippingFormData;
 }
 
-export default function SquarePaymentForm({ totalPrice }: Props) {
+export default function SquarePaymentForm({ totalPrice, shippingData }: Props) {
   const { items, clearCart } = useCart();
   const router = useRouter();
 
@@ -28,6 +30,19 @@ export default function SquarePaymentForm({ totalPrice }: Props) {
       alert(`Payment failed: ${data.error ?? "Unknown error"}`);
       return;
     }
+
+    const { payment } = await res.json();
+
+    await fetch("/api/send-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        deliveryMethod: "shipping",
+        formData: shippingData,
+        items,
+        paymentId: payment?.id,
+      }),
+    }).catch(() => {});
 
     clearCart();
     router.push("/checkout/success");

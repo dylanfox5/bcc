@@ -13,7 +13,7 @@ export default function CheckoutSuccessPage() {
         Your order has been received. You&apos;ll hear from us soon.
       </p>
       <Link
-        href="/gallery"
+        href="/shop"
         className="font-serif text-[11px] uppercase tracking-[0.14em] text-clay border-b border-clay pb-0.5 hover:text-earth hover:border-earth transition-colors"
       >
         Continue browsing

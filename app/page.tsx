@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { PRODUCTS, formatPrice } from "@/lib/products";
+import Image from "next/image";
+import { formatPrice, CATEGORY_GRADIENT } from "@/lib/products";
+import { getSquareCatalogProducts } from "@/lib/square-catalog";
 
-const featured = PRODUCTS.filter((p) => p.featured);
-
-export default function HomePage() {
+export default async function HomePage() {
+  const products = await getSquareCatalogProducts().catch(() => []);
+  const featured = products.filter((p) => p.featured);
   return (
     <div>
       {/* ── Hero ── */}
@@ -31,7 +33,7 @@ export default function HomePage() {
                 View Gallery
               </Link>
               <Link
-                href="/gallery"
+                href="/shop?tab=new"
                 className="font-serif text-[13px] text-clay border-b border-clay pb-0.5 hover:text-earth hover:border-earth transition-colors duration-200"
               >
                 See what&apos;s new →
@@ -72,12 +74,18 @@ export default function HomePage() {
             Featured <em className="italic text-clay">Pieces</em>
           </h2>
           <Link
-            href="/gallery"
+            href="/shop"
             className="font-serif text-[11px] uppercase tracking-[0.14em] text-clay border-b border-clay pb-0.5 hover:text-earth hover:border-earth transition-colors"
           >
             View all
           </Link>
         </div>
+
+        {featured.length === 0 && (
+          <p className="font-serif text-mist text-sm py-10 text-center">
+            Check back soon for new work.
+          </p>
+        )}
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
           {featured.map((product) => (
@@ -87,22 +95,22 @@ export default function HomePage() {
               className="group bg-sand rounded-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
             >
               {/* Image */}
-              <div className="aspect-square relative overflow-hidden">
-                <div
-                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                  style={{
-                    background:
-                      product.category === "mugs"
-                        ? "linear-gradient(145deg, #8B4513, #C4622D)"
-                        : product.category === "vases"
-                        ? "linear-gradient(145deg, #5D3A1A, #8B6914)"
-                        : "linear-gradient(145deg, #3D2B1F, #6B4C38)",
-                  }}
-                />
-                <div className="absolute inset-0 flex items-end p-3">
-                  <span className="font-display italic text-parchment/50 text-xs">
-                    [photo]
-                  </span>
+              <div
+                className="aspect-square relative overflow-hidden"
+                style={{
+                  background: CATEGORY_GRADIENT[product.categories[0] ?? ""] ?? "linear-gradient(145deg, #3D2B1F, #6B4C38)",
+                }}
+              >
+                <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+                  {product.images[0] && (
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 50vw, 33vw"
+                    />
+                  )}
                 </div>
               </div>
 

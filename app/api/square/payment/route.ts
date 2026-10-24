@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { SquareClient, SquareEnvironment } from "square";
 import { randomUUID } from "crypto";
-import { getProduct } from "@/lib/products";
+import { getSquareCatalogProduct } from "@/lib/square-catalog";
 import { CartItem } from "@/lib/types";
 
 const client = new SquareClient({
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   // Never trust the amount sent by the client.
   let amountCents = 0;
   for (const item of items) {
-    const product = getProduct(item.product.id);
+    const product = await getSquareCatalogProduct(item.product.id);
     if (!product) {
       return NextResponse.json(
         { error: `Unknown product: ${item.product.id}` },
@@ -60,7 +60,12 @@ export async function POST(request: Request) {
       locationId: process.env.SQUARE_LOCATION_ID ?? "",
     });
 
-    return NextResponse.json({ payment: result.payment });
+    const payment = JSON.parse(
+      JSON.stringify(result.payment, (_key, value) =>
+        typeof value === "bigint" ? value.toString() : value
+      )
+    );
+    return NextResponse.json({ payment });
   } catch (error: unknown) {
     const message =
       error instanceof Error ? error.message : "Payment failed";

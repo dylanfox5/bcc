@@ -6,9 +6,8 @@ import { useCart } from "@/context/CartContext";
 import Logo from "@/components/Logo";
 
 const NAV_LINKS = [
-  { href: "/gallery",               label: "Gallery"     },
-  { href: "/gallery?tab=new",       label: "New Work"    },
-  { href: "/gallery?tab=commission",label: "Commissions" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/shop",    label: "Shop"    },
 ];
 
 export default function Header() {

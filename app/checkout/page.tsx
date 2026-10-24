@@ -3,24 +3,26 @@
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/products";
-import { DeliveryMethod } from "@/lib/types";
+import { DeliveryMethod, ShippingFormData } from "@/lib/types";
 import SquarePaymentForm from "@/components/SquarePaymentForm";
+import ShippingAddressForm from "@/components/ShippingAddressForm";
 import LocalDeliveryForm from "@/components/LocalDeliveryForm";
 import Link from "next/link";
 
 export default function CheckoutPage() {
   const { items, totalPrice } = useCart();
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod | null>(null);
+  const [shippingData, setShippingData] = useState<ShippingFormData | null>(null);
 
   if (items.length === 0) {
     return (
       <div className="max-w-2xl mx-auto px-6 py-20 text-center">
         <p className="font-display italic text-earth text-2xl mb-6">No items in cart.</p>
         <Link
-          href="/gallery"
+          href="/shop"
           className="font-serif text-[11px] uppercase tracking-[0.14em] text-clay border-b border-clay pb-0.5 hover:text-earth hover:border-earth transition-colors"
         >
-          Back to gallery
+          Back to shop
         </Link>
       </div>
     );
@@ -89,11 +91,11 @@ export default function CheckoutPage() {
       )}
 
       {/* Forked checkout flows */}
-      {deliveryMethod === "shipping" && (
+      {deliveryMethod === "shipping" && !shippingData && (
         <div>
           <div className="flex items-center justify-between mb-5">
             <h2 className="font-serif text-[10px] uppercase tracking-[0.18em] text-mist">
-              Payment
+              Shipping
             </h2>
             <button
               onClick={() => setDeliveryMethod(null)}
@@ -102,7 +104,24 @@ export default function CheckoutPage() {
               ← Change
             </button>
           </div>
-          <SquarePaymentForm totalPrice={totalPrice} />
+          <ShippingAddressForm onSubmit={setShippingData} />
+        </div>
+      )}
+
+      {deliveryMethod === "shipping" && shippingData && (
+        <div>
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="font-serif text-[10px] uppercase tracking-[0.18em] text-mist">
+              Payment
+            </h2>
+            <button
+              onClick={() => setShippingData(null)}
+              className="font-serif text-[10px] uppercase tracking-[0.12em] text-mist hover:text-clay transition-colors"
+            >
+              ← Edit address
+            </button>
+          </div>
+          <SquarePaymentForm totalPrice={totalPrice} shippingData={shippingData} />
         </div>
       )}
 

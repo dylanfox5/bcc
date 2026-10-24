@@ -2,14 +2,7 @@
 
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
-import { formatPrice } from "@/lib/products";
-
-const CATEGORY_GRADIENT: Record<string, string> = {
-  mugs:     "linear-gradient(145deg, #8B4513, #C4622D)",
-  vases:    "linear-gradient(145deg, #5D3A1A, #8B6914)",
-  planters: "linear-gradient(145deg, #7B4F3A, #C4622D)",
-  bowls:    "linear-gradient(145deg, #3D2B1F, #6B4C38)",
-};
+import { formatPrice, CATEGORY_GRADIENT } from "@/lib/products";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, totalPrice } = useCart();
@@ -19,10 +12,10 @@ export default function CartPage() {
       <div className="max-w-2xl mx-auto px-6 py-20 text-center">
         <p className="font-display italic text-earth text-2xl mb-6">Your cart is empty.</p>
         <Link
-          href="/gallery"
+          href="/shop"
           className="font-serif text-[11px] uppercase tracking-[0.14em] text-clay border-b border-clay pb-0.5 hover:text-earth hover:border-earth transition-colors"
         >
-          Browse the gallery
+          Browse the shop
         </Link>
       </div>
     );
@@ -43,7 +36,7 @@ export default function CartPage() {
               className="w-16 h-16 rounded-sm flex-shrink-0"
               style={{
                 background:
-                  CATEGORY_GRADIENT[product.category] ??
+                  CATEGORY_GRADIENT[product.categories[0] ?? ""] ??
                   "linear-gradient(145deg, #3D2B1F, #6B4C38)",
               }}
             />
